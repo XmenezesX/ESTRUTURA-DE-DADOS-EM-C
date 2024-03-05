@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#define max 100000000
+int vet[max];
 
 void insertionSort(int *vet, int n){
     int i,j, chave;
@@ -17,16 +20,15 @@ void insertionSort(int *vet, int n){
 }
 
 int main(){
-    int n, i;
-    puts("Digite o tamanho do vetor de inteiro:");
-    scanf("%d",&n);
-
-    int vet[n], aux;
-    //aux = 0;  //ordena de forma crescente
-    aux = n;  //ordena de forma decrescente
+    int i, n;
+    n = 100000000;
+    int aux;
+    aux = 100000000;  //ordena de forma crescente
+    //aux = n;  //ordena de forma decrescente
     for ( i = 0; i < n; i++)
     {
        vet[i] = aux;
+       
        //ordena de forma decrescente
        aux = aux - 1;
 
