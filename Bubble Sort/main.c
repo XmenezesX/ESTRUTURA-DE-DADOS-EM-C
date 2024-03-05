@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void bubblesort(int *vet, int tamanhoVetor){
+void bubbleSort(int *vet, int tamanhoVetor){
     int i,j, aux;
     for ( i = 0; i < tamanhoVetor; i++)
     {
@@ -26,6 +26,6 @@ int main(){
         aux--; 
     }
     
-    bubblesort(vet, tamanhoVetor);
+    bubbleSort(vet, tamanhoVetor);
     puts("acabou");
 }

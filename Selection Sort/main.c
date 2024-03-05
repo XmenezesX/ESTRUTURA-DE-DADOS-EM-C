@@ -1,24 +1,29 @@
 #include <stdio.h>
 
-void bubblesort(int *vet, int tamanhoVetor){
-    int i,j, aux;
+void selectionSort(int *vet, int tamanhoVetor){
+    int i, j, minimo, auxiliar;
     for ( i = 0; i < tamanhoVetor; i++)
     {
+        minimo = i;
         for ( j = i + 1; j < tamanhoVetor; j++)
         {
-            if (vet[i]>vet[j])
+            if (vet[j] < vet[minimo])
             {
-                aux = vet[i];
-                vet[i] = vet[j];
-                vet[j] = aux;
+                minimo = j;
             }
+            if (i != minimo)
+            {
+                auxiliar = vet[i];
+                vet[i] = vet[minimo];
+                vet[minimo] = auxiliar;
+            } 
         }
     }
 }
 
 int main(){
     int tamanhoVetor, i, aux;
-    aux = tamanhoVetor = 100000;
+    aux = tamanhoVetor = 10;
     int vet[tamanhoVetor];
     for (i = 0; i < tamanhoVetor; i++)
     {
@@ -26,6 +31,10 @@ int main(){
         aux--; 
     }
     
-    bubblesort(vet, tamanhoVetor);
+    selectionSort(vet, tamanhoVetor);
+    for (i = 0; i < tamanhoVetor; i++)
+    {
+        printf("%d ", vet[i]);
+    }
     puts("acabou");
 }
