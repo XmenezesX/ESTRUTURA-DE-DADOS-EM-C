@@ -32,9 +32,5 @@ int main(){
     }
     
     selectionSort(vet, tamanhoVetor);
-    for (i = 0; i < tamanhoVetor; i++)
-    {
-        printf("%d ", vet[i]);
-    }
     puts("acabou");
 }
