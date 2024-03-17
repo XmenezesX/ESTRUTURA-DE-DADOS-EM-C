@@ -8,6 +8,10 @@ typedef struct Stack
     struct Stack *proximo;
 }stack;
 
+void tamanhoPilha(stack *pilha){
+    printf("Tamanho da Pilha : %d\n", pilha->tamanhoDaPilha);
+}
+
 void criaPilha(stack *pilha)
 {
     pilha->proximo = NULL;
@@ -21,6 +25,15 @@ void exibirTodosElementos(stack *pilha)
         puts("Pilha vazia!");
         return;
     }
+    stack *atualPilha;
+    atualPilha = pilha->proximo;
+    puts("Pilha :");
+    while (atualPilha != NULL)
+    {
+        printf("%d\n", atualPilha->novoValor);
+        atualPilha = atualPilha->proximo;
+    }
+    
 }
 
 void liberarPilha(stack *pilha)
@@ -94,5 +107,3 @@ void pop(stack *pilha)
     puts("Ultimo elemento removido!");
     return;
 };
-
-
