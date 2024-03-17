@@ -16,10 +16,23 @@ void criaPilha(stack *pilha)
 
 void exibirTodosElementos(stack *pilha)
 {
-    if (pilha->proximo == NULL)
+    if (empty(pilha))
     {
         puts("Pilha vazia!");
         return;
+    }
+}
+
+void liberarPilha(stack *pilha)
+{
+    stack *proximaPilha, *atualPilha;
+    atualPilha = pilha->proximo;
+
+    while (atualPilha != NULL)
+    {
+        proximaPilha = atualPilha->proximo;
+        free(atualPilha);
+        atualPilha = proximaPilha;
     }
 }
 
@@ -81,4 +94,5 @@ void pop(stack *pilha)
     puts("Ultimo elemento removido!");
     return;
 };
+
 
