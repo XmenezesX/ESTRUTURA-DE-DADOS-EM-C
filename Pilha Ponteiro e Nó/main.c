@@ -55,6 +55,7 @@ void menuOpcoes(int opcao, stack *pilha){
             break;
     }
 }
+
 int main(){
     int opcao;
     stack *pilha = (stack *)malloc(sizeof(stack));
