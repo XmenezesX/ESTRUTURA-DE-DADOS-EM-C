@@ -11,7 +11,7 @@ int menu(){
     return opcao;
 }
 
-void menuOpcoes(int opcao){
+void menuOpcoes(int opcao, PILHA* pilha){
     int novoNumero;
     switch(opcao){
         case 0:
@@ -21,7 +21,7 @@ void menuOpcoes(int opcao){
         case 1:
             puts("Digite um numero em decimal:");
             scanf("%d", &novoNumero);
-            decimalToBinario(novoNumero);
+            pilha = decimalToBinario(novoNumero);
             break;
 
         default:
@@ -31,10 +31,11 @@ void menuOpcoes(int opcao){
 }
 
 int main(){
+    PILHA *pilha =(PILHA*) malloc(sizeof(PILHA));
     int opcao;
     do{
         opcao = menu();
-        menuOpcoes(opcao);
+        menuOpcoes(opcao, pilha);
     }while (opcao);
 
     puts("Programa Encerrado");

@@ -8,14 +8,11 @@ typedef struct Pilha
     int inicio, final;
 }PILHA;
 
-
-
 int empty(PILHA *pilha){
     return (pilha->final == pilha->inicio);
 }
 
-int criaPilha(PILHA *pilha){
-    pilha = (PILHA*)malloc(sizeof(PILHA));
+void criaPilha(PILHA *pilha){
     pilha->final = pilha->inicio = 0;
 }
 
@@ -30,7 +27,6 @@ void push(int valor, PILHA *pilha){
     }
     pilha->vetor[pilha->final] = valor;
     pilha->final++;
-    puts("Numero inserido com Sucesso!");
 }
 
 void pop(PILHA *pilha){
@@ -50,24 +46,24 @@ void exibe(PILHA *pilha){
         puts("Digite o numero Decimal primeiro!");
         return;
     }
-    puts("Pilha:");
-    for (int i = pilha->final - 1; i > -1; i--)
+    puts("Numero Binario:");
+    for (int i = pilha->final - 1; i >= 0; i--)
     {
-        printf("%d\n", pilha[i]);
+        printf("%d", pilha->vetor[i]);
     }
+    printf("\n");
 }
 
 PILHA* decimalToBinario(int decimal){
-    PILHA *pilha;
+    PILHA *pilha = malloc(sizeof(PILHA));
     criaPilha(pilha);
-    int resto, quociente, divisor=2;
-    while (decimal !=0)
+    int resto, divisor=2;
+    while (decimal > 0)
     {
-        decimal = decimal/divisor;
         resto = decimal%divisor;
-        printf("resto: %d \n", resto);
+        decimal = decimal/divisor;
         push(resto, pilha);
     }
-    
+    exibe(pilha);
+    return pilha;
 }
-
