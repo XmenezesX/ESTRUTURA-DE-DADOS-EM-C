@@ -3,50 +3,19 @@
 
 typedef struct Fila
 {
-    int novoValor;
-    int tamanhoDaPilha;
+    int numero;
+    int tamanhoDaFila;
     struct Fila *proximo;
 }Fila;
 
-void tamanhoPilha(Fila *pilha){
-    printf("Tamanho da Pilha : %d\n", pilha->tamanhoDaPilha);
+void tamanhoFila(Fila *fila){
+    printf("Tamanho da Fila : %d\n", fila->tamanhoDaFila);
 }
 
-void criaPilha(Fila *pilha)
+void criaFila(Fila *fila)
 {
-    pilha->proximo = NULL;
-    pilha->tamanhoDaPilha = 0;
-}
-
-void exibirTodosElementos(Fila *pilha)
-{
-    if (empty(pilha))
-    {
-        puts("Pilha vazia!");
-        return;
-    }
-    Fila *atualPilha;
-    atualPilha = pilha->proximo;
-    puts("Pilha :");
-    while (atualPilha != NULL)
-    {
-        printf("%d\n", atualPilha->novoValor);
-        atualPilha = atualPilha->proximo;
-    }
-    
-}
-
-void liberarPilha(Fila *pilha)
-{
-    Fila *proximaPilha, *atualPilha;
-    atualPilha = pilha->proximo;
-
-    while (atualPilha != NULL)
-    {
-        proximaPilha = atualPilha->proximo;
-        free(atualPilha);
-        atualPilha = proximaPilha;
-    }
+    fila->proximo = NULL;
+    fila->tamanhoDaFila = 0;
 }
 
 Fila *alocaNovoValor()
@@ -54,56 +23,79 @@ Fila *alocaNovoValor()
     Fila *novo = (Fila *) malloc(sizeof(Fila));
     if (!novo)
     {
-        puts("Erro de Alocacao!");;
+        puts("Erro de Alocacao!");
         exit(1);
     }
     printf("Digite o novo elemento: ");
-    scanf("%d", &novo->novoValor);
+    scanf("%d", &novo->numero);
     return novo;
 }
 
-int empty(Fila *pilha)
+int empty(Fila *fila)
 {
-    if (pilha->proximo == NULL)
+    if (fila->proximo == NULL)
         return 1;
     else
         return 0;
 };
 
-void push(Fila *pilha)
+void exibirTodosElementos(Fila *fila)
+{
+    if (empty(fila))
+    {
+        puts("Filha vazia!");
+        return;
+    }
+    Fila *atualFila;
+    atualFila = fila->proximo;
+    puts("Fila:");
+    while (atualFila != NULL)
+    {
+        printf("%d ", atualFila->numero);
+        atualFila = atualFila->proximo;
+    }
+}
+
+void liberarFila(Fila *fila)
+{
+    Fila *proximaFila, *atualFila;
+    atualFila = fila->proximo;
+
+    while (atualFila != NULL)
+    {
+        proximaFila = atualFila->proximo;
+        free(atualFila);
+        atualFila = proximaFila;
+    }
+}
+
+void push(Fila *fila)
 {
     Fila *novo = alocaNovoValor();
     novo->proximo = NULL;
-    if (empty(pilha))
-        pilha->proximo = novo;
+    if (empty(fila))
+        fila->proximo = novo;
     else{
-        Fila *tmp = pilha->proximo;
+        Fila *tmp = fila->proximo;
         while (tmp->proximo != NULL)
         {
             tmp = tmp->proximo;
         }
         tmp->proximo = novo;
     }
-    pilha->tamanhoDaPilha++;
+    fila->tamanhoDaFila++;
 };
 
-void pop(Fila *pilha)
+void pop(Fila **fila)
 {
-    if (pilha->proximo == NULL)
+    if ((*fila)->proximo == NULL)
     {
-        puts("A pilha esta vazia");
+        puts("A fila esta vazia");
         return;
     }
-    Fila *ultimo = pilha->proximo;
-    Fila *penultimo = pilha;
-    while (ultimo->proximo !=NULL)
-    {
-        penultimo = ultimo;
-        ultimo = ultimo->proximo;
-    }
-    free(ultimo);
-    penultimo->proximo = NULL;
-    pilha->tamanhoDaPilha--;
-    puts("Ultimo elemento removido!");
+    Fila *tmp = (*fila)->proximo;
+    (*fila)->proximo = tmp->proximo;
+    free(tmp);
+    puts("Primeiro elemento removido!");
     return;
-};
+}

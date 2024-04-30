@@ -2,11 +2,10 @@
 
 int menu(){
     int opcao;
-    puts("----- Menu pilha -----");
+    puts("\n----- Menu pilha -----");
     puts("1 - Push");
     puts("2 - Pop");
     puts("3 - Mostrar Todos Elementos");
-    puts("4 - Verifica se a pilha esta vazia");
     puts("5 - Zerar pilha");
     puts("6 - Tamanho da pilha");
     puts("0 - Sair");
@@ -16,38 +15,31 @@ int menu(){
     return opcao;
 }
 
-void menuOpcoes(int opcao, Fila *pilha){
+void menuOpcoes(int opcao, Fila *fila){
     switch(opcao){
         case 0:
-            liberarPilha(pilha);
+            liberarFila(fila);
             break;
 
         case 1:
-            push(pilha);
+            push(fila);
             break;
 
         case 2:
-            pop(pilha);
+            pop(&fila);
             break;
 
         case 3:
-            exibirTodosElementos(pilha);
-            break;
-
-        case 4:
-            if (empty(pilha))
-                puts("Pilha Vazia");
-            else
-                puts("Pilha com elementos");
+            exibirTodosElementos(fila);
             break;
 
         case 5:
-            liberarPilha(pilha);
-            criaPilha(pilha);
+            liberarFila(fila);
+            criaFila(fila);
             break;
 
         case 6:
-            tamanhoPilha(pilha);
+            tamanhoFila(fila);
             break;
 
         default:
