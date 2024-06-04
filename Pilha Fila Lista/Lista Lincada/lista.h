@@ -87,7 +87,7 @@ void pop(list *lista){
         scanf("%d", &posicao);
     }
     
-    list *temp = lista,*removido, *proximo;
+    list *temp = lista, *removido, *proximo;
     int valorRemovido;
     for (int i = 0; temp!=NULL && i < posicao - 1; i++)
     {
