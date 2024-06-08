@@ -7,9 +7,14 @@ void rotacionarLista(list *lista){
         penultimoNo = penultimoNo->No;
     }
     ultimoNo = penultimoNo->No;
-    // colocando ultimo como primeiro
+
+    // No do ultimo recebendo o primeiro elemento da lista;
     ultimoNo->No = lista->No;
-    // colocando penultimo como ultimo
+
+    //Ultimo sendo colocado na primeira posição
+    lista->No = ultimoNo;
+    
+    //Faz com que o penultimo seja o ultimo
     penultimoNo->No = NULL;
 }
 
